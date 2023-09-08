@@ -1,14 +1,23 @@
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {GlobalStyled} from "./styles/global.styled.ts";
 import {ThemeProvider} from "styled-components";
 import {defaultTheme} from "./styles/theme.ts";
+import Navbar from "./globalComponents/Navbar/Navbar.tsx";
+import GlobalContextProvider from "./context/GlobalContextProvider.tsx";
 
 function App() {
 
   return (
     <BrowserRouter>
         <ThemeProvider theme={defaultTheme}>
-              <h1>FilmeMania</h1>
+            <GlobalContextProvider>
+                <Navbar/>
+                <Routes>
+                    <Route/>
+                    <Route/>
+                    <Route/>
+                </Routes>
+            </GlobalContextProvider>
             <GlobalStyled/>
         </ThemeProvider>
     </BrowserRouter>
