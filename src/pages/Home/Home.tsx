@@ -1,7 +1,10 @@
+import PostForm from "./components/PostForm/PostForm.tsx";
 
 function Home() {
     return (
-        <div></div>
+        <main>
+            <PostForm/>
+        </main>
     );
 }
 

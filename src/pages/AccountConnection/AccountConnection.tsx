@@ -1,7 +1,18 @@
+import * as Styles from "./accountConnection.styled.ts";
+import poster from "../../assets/poster.png";
+import {Outlet} from "react-router-dom";
 
 function AccountConnection() {
     return (
-        <div></div>
+        <Styles.AccountWrapper>
+            <section>
+                <picture>
+                    <img src={poster} alt=""/>
+                </picture>
+
+                <Outlet/>
+            </section>
+        </Styles.AccountWrapper>
     );
 }
 
