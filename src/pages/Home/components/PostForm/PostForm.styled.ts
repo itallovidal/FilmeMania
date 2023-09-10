@@ -63,11 +63,14 @@ export const StarsSection = styled.div`
 
 export const CommentSection = styled.div`
   width: 60%;
+  display: flex;
+  flex-direction: column;
+  
 
   #comment{
     resize: none;
     width: 100%;
-    height: 80%;
+    height: 60%;
     margin-top: 1rem;
     border-radius: 8px;
     border: none;

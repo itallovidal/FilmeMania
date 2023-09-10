@@ -6,6 +6,7 @@ import StarsRating from "../../../../globalComponents/StarsRating/StarsRating.ts
 import {MagnifyingGlass} from "phosphor-react";
 import {searchMovie} from "../../../../utils/api.ts";
 import {FormEvent} from "react";
+import SearchResult from "../SeachResult/SeachResult.tsx";
 function PostForm() {
 
     function temporary(e: FormEvent){
@@ -23,16 +24,17 @@ function PostForm() {
                     <Styles.StarsSection>
                         <Input labelName={'Nome do Filme'} id={'movieName'} name={'movieName'} />
                         <Button onClick={()=> searchMovie('far from home')} id={'searchButton'} variant={"neutral"}><MagnifyingGlass size={16} /></Button>
+
+                        <SearchResult str={['homem aranha', 'home aranho', 'testete']}/>
                         <StarsRating initialValue={0} isChangeable={true}/>
                     </Styles.StarsSection>
                     
                     <Styles.CommentSection>
                         <label htmlFor="comment">Comentário</label>
-                        <textarea rows={8} maxLength={250} id={'comment'} name={'comment'}/>
+                        <textarea rows={5} maxLength={250} id={'comment'} name={'comment'}/>
+                        <Button variant={'primary'}>Postar</Button>
                     </Styles.CommentSection>
                 </Styles.Wrapper>
-
-                <Button variant={'primary'}>Postar</Button>
             </Styles.FormWrapper>
         </Styles.PostWrapper>
     );

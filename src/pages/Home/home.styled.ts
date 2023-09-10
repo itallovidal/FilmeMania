@@ -7,5 +7,5 @@ width: 95%;
   gap: 1rem;
   flex-wrap: wrap;
   margin: 1rem auto;
-  
+  justify-content: center;
 `

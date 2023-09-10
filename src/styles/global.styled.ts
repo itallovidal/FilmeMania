@@ -31,6 +31,10 @@ export const GlobalStyled =  createGlobalStyle`
       margin-bottom: calc(4rem + 2rem);
       opacity: 0;
       animation: ${show} 400ms 200ms forwards;
+      
+      @media (max-width: 980px){
+        display: none;
+      }
     }
     
     picture{
