@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {HTMLProps} from "react";
 
 export const PostWrapper = styled.div`
   background: white;
@@ -9,6 +10,8 @@ export const PostWrapper = styled.div`
   height: 20rem;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: ${({theme})=> theme.SHADOW};
+  border: 2px solid white;
 
   picture {
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
@@ -24,7 +27,9 @@ export const PostWrapper = styled.div`
   }
 `
 
-export const FormWrapper = styled.form`
+interface IForm extends HTMLProps<HTMLFormElement>{}
+
+export const FormWrapper = styled.form<IForm>`
   padding: 2rem;
   flex: 1;
   justify-content: right;
@@ -43,7 +48,17 @@ export const Wrapper = styled.div`
 `
 
 export const StarsSection = styled.div`
-  width: 40%
+  width: 40%;
+  position: relative;
+
+  
+  #searchButton{
+    padding: .8rem;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: calc(2rem + 1ch);
+    right: 0;
+  }
 `
 
 export const CommentSection = styled.div`

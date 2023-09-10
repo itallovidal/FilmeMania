@@ -7,6 +7,8 @@ export const PostWrapper = styled.div`
   height: 21rem;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: ${({theme})=> theme.SHADOW};
+  border: 2px solid white;
   
   picture{
     width: 40%;

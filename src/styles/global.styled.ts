@@ -13,7 +13,7 @@ export const GlobalStyled =  createGlobalStyle`
     }
     
     body{
-      background-color: ${({theme})=> theme.COLORS.SECONDARY};
+      background-image: ${({theme})=> theme.COLORS.GRADIENT};
     }
     
     span, p, a, textarea, input, label{

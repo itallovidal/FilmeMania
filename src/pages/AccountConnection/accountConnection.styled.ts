@@ -2,8 +2,8 @@ import styled from "styled-components";
 import {show} from "../../styles/global.styled.ts";
 
 export const AccountWrapper = styled.article`
-  max-width: 70rem;
-  width: 90%;
+  //max-width: 70rem;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   height: 100vh;
@@ -13,10 +13,10 @@ export const AccountWrapper = styled.article`
   
   section{
     display: flex;
-    height: 45rem;
+    height: 40rem;
     background: white;
-    width: 90%;
-    max-width: 70rem;
+    width: 100%;
+    //max-width: 70rem;
     
     picture {
       clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
@@ -35,14 +35,15 @@ export const FormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  //flex: 1;
+  width: 30%;
+  margin: 0 auto;
   opacity: 0;
   animation: ${show} 400ms forwards;
-  margin-left: -5%;
+  //margin-left: -5%;
   
   button{
     margin: 2rem auto;
-    
   }
   
   form{

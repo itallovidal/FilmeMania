@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavbarWrapper = styled.div`
   top: 0;
-  background: ${({theme})=> theme.COLORS.PRIMARY};
+  background: ${({theme})=> theme.COLORS.DARK_GRADIENT};
   position: fixed;
   left: 0;
   width: 100%;
@@ -43,6 +43,7 @@ export const Navbar = styled.div`
       &:hover{
         background: white;
         color: ${({theme})=> theme.COLORS.SECONDARY};
+        border-radius: 8px;
       }
     }
   }

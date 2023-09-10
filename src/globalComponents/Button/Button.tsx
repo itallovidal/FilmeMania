@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import {HTMLProps, ReactNode} from "react";
 
 
-interface IButton{
+interface IButton extends HTMLProps<HTMLButtonElement>{
     variant: 'primary' | 'neutral'
 }
 const Container = styled.button<IButton>`
@@ -19,14 +20,14 @@ const Container = styled.button<IButton>`
   }
 `
 
-interface IButtonProps {
-    children: string,
+interface IButtonProps extends HTMLProps<HTMLButtonElement> {
+    children: string | ReactNode,
     variant: 'primary' | 'neutral'
 }
 
-function Button({variant, children} : IButtonProps) {
+function Button({variant, children, ...props} : IButtonProps) {
     return (
-        <Container variant={variant}>{children}</Container>
+        <Container {...props} variant={variant}>{children}</Container>
     );
 }
 
