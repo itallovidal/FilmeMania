@@ -10,7 +10,7 @@ interface IInput extends HTMLProps<HTMLInputElement>{
 function Input({isSelect, labelName,...props} : IInput) {
 
     const input = isSelect === undefined
-        ? <input id={props.id} name={props.name} {...props} type="text"/>
+        ? <input id={props.id} type={props.type} name={props.name} {...props} />
         : (
             <Styles.SelectWrapper>
                 <SelectInput id={props.id!} name={props.name!}/>

@@ -14,7 +14,10 @@ export const GlobalStyled =  createGlobalStyle`
     
     body{
       background-color: ${({theme})=> theme.COLORS.SECONDARY};
-      font-family: ${({theme})=> theme.FONT.SECONDARY};
+    }
+    
+    span, p, a, textarea, input, label{
+      font-family: ${({theme})=> theme.FONT.PRIMARY};
     }
     
     a{
@@ -23,8 +26,11 @@ export const GlobalStyled =  createGlobalStyle`
     }
     
     main{
-      margin-top: calc(3rem + 1.2ch + 2rem);
+      margin-top: calc(4rem + 1.2ch + 2rem);
       animation: ${show} 400ms forwards;
+      margin-bottom: calc(4rem + 2rem);
+      opacity: 0;
+      animation: ${show} 400ms 200ms forwards;
     }
     
     picture{

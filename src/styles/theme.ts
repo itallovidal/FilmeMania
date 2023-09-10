@@ -8,7 +8,7 @@ export const defaultTheme  = {
 
     },
     FONT:{
-        PRIMARY: "'Plus Jakarta Sans', sans-serif'",
+        PRIMARY: "'Plus Jakarta Sans', sans-serif",
         SECONDARY: "'Josefin Sans', sans-serif"
     }
 } as const

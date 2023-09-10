@@ -8,6 +8,7 @@ import AccountConnection from "./pages/AccountConnection/AccountConnection.tsx";
 import Login from "./pages/AccountConnection/Login/Login.tsx";
 import SignIn from "./pages/AccountConnection/SignIn/SignIn.tsx";
 import Home from "./pages/Home/Home.tsx";
+import Profile from "./pages/Profile/Profile.tsx";
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
                         <Route path={'signin'} element={<SignIn/>}/>
                     </Route>
 
-                    <Route/>
+                    <Route path={'/profile'} element={<Profile/>}/>
                 </Routes>
             </GlobalContextProvider>
             <GlobalStyled/>
