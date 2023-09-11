@@ -1,12 +1,23 @@
 import * as Styles from './starsRating.styled.ts'
 import {Star, IconWeight} from "phosphor-react";
 import React from "react";
-function StarsRating({initialValue, isChangeable} : {initialValue: number, isChangeable: boolean}) {
+
+interface IStarsRatingProps{
+    initialValue: number,
+    isChangeable: boolean,
+    handleSetStar?: (a: number)=> void
+}
+function StarsRating({initialValue, isChangeable, handleSetStar} : IStarsRatingProps) {
     const [fillState, setFillState] = React.useState(initialValue)
 
     function changeFill(value: number){
-        if(isChangeable)
+        if(isChangeable){
             setFillState(value)
+
+            if(handleSetStar){
+                handleSetStar(value)
+            }
+        }
     }
 
     return (
@@ -14,7 +25,6 @@ function StarsRating({initialValue, isChangeable} : {initialValue: number, isCha
             {isChangeable && <label htmlFor="">Rating</label>}
 
             <Styles.StarsWrapper id={'starsWrapper'}>
-                <Star onClick={()=> changeFill(0)} size={32}  weight={fillState >= 0 ? 'fill' as IconWeight : undefined} />
                 <Star onClick={()=> changeFill(1)} size={32}  weight={fillState >= 1 ? 'fill' as IconWeight : undefined} />
                 <Star onClick={()=> changeFill(2)} size={32}  weight={fillState >= 2 ? 'fill' as IconWeight : undefined} />
                 <Star onClick={()=> changeFill(3)} size={32}  weight={fillState >= 3 ? 'fill' as IconWeight : undefined} />

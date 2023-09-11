@@ -4,29 +4,60 @@ import Button from "../../../../globalComponents/Button/Button.tsx";
 import poster from "../../../../assets/poster.png"
 import StarsRating from "../../../../globalComponents/StarsRating/StarsRating.tsx";
 import {MagnifyingGlass} from "phosphor-react";
-import {searchMovie} from "../../../../utils/api.ts";
-import {FormEvent} from "react";
+import {IMAGE_PATH, IMovie, searchMovie} from "../../../../utils/api.ts";
 import SearchResult from "../SeachResult/SeachResult.tsx";
-function PostForm() {
+import React from "react";
+import { useForm } from "react-hook-form"
 
-    function temporary(e: FormEvent){
-        e.preventDefault()
+function PostForm() {
+    const [isSelectActive, setIsSelectActive] = React.useState(false);
+    const [movieSearched, setMovieSearched] = React.useState<IMovie[]>([])
+    const [selectedMovie, setSelectedMovie] = React.useState<IMovie | null>(null);
+    const [starRating, setStarRating] = React.useState(0);
+    const { handleSubmit } = useForm()
+
+    function handleSetStar(rating: number){
+        setStarRating(rating)
+    }
+    function handlePost(){
+        setIsSelectActive(false)
+        console.log(starRating)
+        console.log('enviou formulario')
+    }
+    function handleSelect(movieId: number  ){
+        console.log('selectionado')
+
+        setSelectedMovie(movieSearched.filter((item)=>{
+            return item.id === movieId
+        })[0])
+    }
+
+    function handleSearchMovie(){
+        const movieToSearch = document.querySelector<HTMLInputElement>('#movieName')
+        console.log('clicado na lupa')
+        if(movieToSearch){
+            searchMovie(movieToSearch.value).then((data)=>{
+                setMovieSearched(data)
+                console.log(data);
+                setIsSelectActive(true)
+            })
+        }
     }
 
     return (
         <Styles.PostWrapper>
             <picture>
-                <img src={poster} alt=""/>
+                <img src={ selectedMovie && selectedMovie.backdrop_path !== null ? IMAGE_PATH + selectedMovie.backdrop_path : poster} alt=""/>
             </picture>
 
-            <Styles.FormWrapper onSubmit={temporary}>
+            <Styles.FormWrapper onSubmit={handleSubmit(handlePost)}>
                 <Styles.Wrapper>
                     <Styles.StarsSection>
                         <Input labelName={'Nome do Filme'} id={'movieName'} name={'movieName'} />
-                        <Button onClick={()=> searchMovie('far from home')} id={'searchButton'} variant={"neutral"}><MagnifyingGlass size={16} /></Button>
+                        <Button type={'button'} onClick={()=> handleSearchMovie()} id={'searchButton'} variant={"neutral"}><MagnifyingGlass size={16} /></Button>
 
-                        <SearchResult str={['homem aranha', 'home aranho', 'testete']}/>
-                        <StarsRating initialValue={0} isChangeable={true}/>
+                        <SearchResult handleSelect={handleSelect} isActive={isSelectActive} movies={movieSearched}/>
+                        <StarsRating handleSetStar={handleSetStar} initialValue={1} isChangeable={true}/>
                     </Styles.StarsSection>
                     
                     <Styles.CommentSection>

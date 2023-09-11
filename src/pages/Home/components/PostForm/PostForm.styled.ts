@@ -51,6 +51,10 @@ export const StarsSection = styled.div`
   width: 40%;
   position: relative;
 
+  .activeSelect{
+    padding: .8rem;
+    height: 3rem;
+  }
   
   #searchButton{
     padding: .8rem;
