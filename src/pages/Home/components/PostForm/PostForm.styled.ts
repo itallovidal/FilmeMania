@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {HTMLProps} from "react";
+import {show} from "../../../../styles/global.styled.ts";
 
 export const PostWrapper = styled.div`
   background: white;
@@ -18,11 +19,16 @@ export const PostWrapper = styled.div`
     overflow: hidden;
     width: 35%;
     height: 100%;
-
+    
+    .loaded{
+      animation: ${show} 300ms forwards;
+    }
+    
     img {
       transform: scale(1.2) rotate(-8.5deg);
       height: 100%;
       object-fit: cover;
+      opacity: 0;
     }
   }
 `

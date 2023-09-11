@@ -16,6 +16,8 @@ function PostForm() {
     const [starRating, setStarRating] = React.useState(0);
     const { handleSubmit } = useForm()
 
+    const imageBackdrop = React.useRef<HTMLImageElement>(null)
+
     function handleSetStar(rating: number){
         setStarRating(rating)
     }
@@ -26,7 +28,9 @@ function PostForm() {
     }
     function handleSelect(movieId: number  ){
         console.log('selectionado')
-
+        if(imageBackdrop.current){
+            imageBackdrop.current.classList.remove('loaded');
+        }
         setSelectedMovie(movieSearched.filter((item)=>{
             return item.id === movieId
         })[0])
@@ -44,10 +48,16 @@ function PostForm() {
         }
     }
 
+    function loadImage(){
+        if(imageBackdrop.current){
+            imageBackdrop.current.classList.add('loaded');
+        }
+    }
+
     return (
         <Styles.PostWrapper>
             <picture>
-                <img src={ selectedMovie && selectedMovie.backdrop_path !== null ? IMAGE_PATH + selectedMovie.backdrop_path : poster} alt=""/>
+                <img ref={imageBackdrop} onLoad={()=> loadImage()} src={selectedMovie && selectedMovie.backdrop_path !== null ? IMAGE_PATH + selectedMovie.backdrop_path : poster} alt=""/>
             </picture>
 
             <Styles.FormWrapper onSubmit={handleSubmit(handlePost)}>
