@@ -29,7 +29,7 @@ export interface IMovie{
 export async function searchMovie(movie: string) : Promise<IMovie[]>{
     const response = await fetch(`${API_BASE_PATH}search/movie?api_key=${AUTHORIZATION}&query=${movie}`)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
 
     return data.results
 }

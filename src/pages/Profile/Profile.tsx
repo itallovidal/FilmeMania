@@ -1,7 +1,6 @@
 import * as Styles from './profile.styled.ts';
 import Button from "../../globalComponents/Button/Button.tsx";
 import Post from "../../globalComponents/Post/Post.tsx";
-import Input from "../../globalComponents/Input/Input.tsx";
 import React from "react";
 
 function Profile() {
@@ -24,7 +23,7 @@ function Profile() {
                     <Styles.AdminTab id={'adminTab'} onClick={()=> setActiveTab(prev => !prev)} className={activeTab ? 'activeTab' : undefined}>
                         <h1>Painel do Moderador</h1>
 
-                        <Input id={'searchUser'} labelName={'Pesquisar usuário'} placeholder={'Pesquise um usuário'}/>
+                        {/*<Input id={'searchUser'} labelName={'Pesquisar usuário'} placeholder={'Pesquise um usuário'}/>*/}
 
                         <Styles.ButtonWrapper>
                             <Button variant={'neutral'}> Excluir </Button>

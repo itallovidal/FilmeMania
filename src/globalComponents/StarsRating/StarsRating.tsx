@@ -25,6 +25,8 @@ function StarsRating({initialValue, isChangeable, handleSetStar} : IStarsRatingP
             {isChangeable && <label htmlFor="">Rating</label>}
 
             <Styles.StarsWrapper id={'starsWrapper'}>
+
+
                 <Star onClick={()=> changeFill(1)} size={32}  weight={fillState >= 1 ? 'fill' as IconWeight : undefined} />
                 <Star onClick={()=> changeFill(2)} size={32}  weight={fillState >= 2 ? 'fill' as IconWeight : undefined} />
                 <Star onClick={()=> changeFill(3)} size={32}  weight={fillState >= 3 ? 'fill' as IconWeight : undefined} />

@@ -13,7 +13,7 @@ export const ProfileWrapper = styled.aside`
     height: fit-content;
   
   #profileTab.activeTab{
-    height: 18.25rem;
+    height: 20rem;
     justify-content: center;
   }
   
@@ -76,7 +76,7 @@ export const AdminTab = styled.section`
   overflow: hidden;
   
   h1{
-    margin-bottom: 2rem;
+    margin: 0;
     font-size: 2rem;
   }
 `
@@ -84,7 +84,8 @@ export const AdminTab = styled.section`
 
 
 export const ButtonWrapper = styled.div`
-
+  margin-top: 2rem;
+  
     button{
       width: 100%;
     }

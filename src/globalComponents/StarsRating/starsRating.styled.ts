@@ -9,4 +9,7 @@ export const StarsWrapper = styled.div`
   }
 `
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+  margin-bottom: .5rem;
+`
+

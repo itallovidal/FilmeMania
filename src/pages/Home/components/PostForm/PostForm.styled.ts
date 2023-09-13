@@ -53,21 +53,51 @@ export const Wrapper = styled.div`
     gap: 1rem;
 `
 
-export const StarsSection = styled.div`
-  width: 40%;
-  position: relative;
+export const SearchWrapper = styled.div`
 
-  .activeSelect{
-    padding: .8rem;
-    height: 3rem;
-  }
+  margin-bottom: 1rem;
+  position: relative;
   
+  label{
+  }
+
+  input{
+    margin-top: 1rem;
+    border-radius: 5px;
+    background-color: ${({theme})=> theme.COLORS.NEUTRAL};
+    padding: 1rem;
+    width: 100%;
+    border: none;
+      //border: 1px solid ${({theme})=> theme.COLORS.PRIMARY};;
+  }
+
   #searchButton{
     padding: .8rem;
     margin-bottom: 1rem;
     position: absolute;
-    top: calc(2rem + 1ch);
-    right: 0;
+    right: 5%;
+    top: 50%;
+    transform: translateY(calc(-50% + 1rem));
+    z-index: 100;
+  }
+`
+export const StarsSection = styled.div`
+  width: 40%;
+  position: relative;
+  
+  
+  span{
+    opacity: 0;
+    color: red ;
+  }
+  
+  span.error{
+    animation: ${show} 400ms forwards;
+  } 
+  
+  .activeSelect{
+    padding: .8rem;
+    height: 3rem;
   }
 `
 

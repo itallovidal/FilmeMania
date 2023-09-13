@@ -1,7 +1,13 @@
+import {FieldValues, Path, UseFormRegister} from "react-hook-form";
+import {HTMLProps} from "react";
 
-function SelectInput({name, id}: {name: string, id: string}) {
+
+interface ISelectInput<T extends FieldValues> extends HTMLProps<HTMLSelectElement>{
+    register: UseFormRegister<T>
+}
+function SelectInput<T extends FieldValues>({register, ...props}: ISelectInput<T>) {
     return (
-        <select name={name} id={id}>
+        <select {...register(props.id as Path<T>)}>
             <option value="">Escolher</option>
             <option value="terror">Terror</option>
             <option value="acao">Ação</option>

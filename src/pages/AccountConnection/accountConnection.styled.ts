@@ -13,10 +13,11 @@ export const AccountWrapper = styled.article`
   
   section{
     display: flex;
-    height: 40rem;
     background: white;
     width: 100%;
     //max-width: 70rem;
+    height: 100%;
+    
     
     picture {
       clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);

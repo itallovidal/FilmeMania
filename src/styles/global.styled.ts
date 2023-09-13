@@ -2,7 +2,7 @@ import {createGlobalStyle, keyframes} from "styled-components";
 
 export const show = keyframes`
   100%{
-    opacity: 100%;
+    opacity: 1;
   }
 `
 export const GlobalStyled =  createGlobalStyle`
@@ -16,8 +16,8 @@ export const GlobalStyled =  createGlobalStyle`
       background-image: ${({theme})=> theme.COLORS.GRADIENT};
     }
     
-    span, p, a, textarea, input, label{
-      font-family: ${({theme})=> theme.FONT.PRIMARY};
+    span, p, a, textarea, input, label, select, option, button{
+      font-family: ${({theme})=> theme.FONT.PRIMARY} !important;
     }
     
     a{
