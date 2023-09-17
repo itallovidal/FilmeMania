@@ -2,20 +2,21 @@ import * as Styles from './profile.styled.ts';
 import Button from "../../globalComponents/Button/Button.tsx";
 import Post from "../../globalComponents/Post/Post.tsx";
 import React from "react";
+import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
 
 function Profile() {
     const [activeTab, setActiveTab] = React.useState(false)
-
+    const {user} = React.useContext(GlobalContext)
     return (
         <main>
             <Styles.Content>
                 <Styles.ProfileWrapper>
                     <Styles.ProfileTab id={'profileTab'} className={!activeTab ? 'activeTab' : undefined}>
-                        <h1>Itallo Vidal</h1>
+                        <h1>{user!.username}</h1>
 
-                        <p> Drama</p>
-                        <p> Suspense </p>
-                        <p> Terror </p>
+                        <p> {user!.fav_gen_1}</p>
+                        <p> {user!.fav_gen_2} </p>
+                        <p> {user!.fav_gen_3}</p>
 
                         <Button variant={"neutral"}>Atualizar Perfil</Button>
                     </Styles.ProfileTab>

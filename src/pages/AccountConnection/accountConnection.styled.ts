@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {show} from "../../styles/global.styled.ts";
 
-export const AccountWrapper = styled.article`
+export const AccountWrapper = styled.main`
   //max-width: 70rem;
   width: 100%;
   margin: 0 auto;

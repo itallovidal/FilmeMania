@@ -1,7 +1,10 @@
 import * as Styles from './navbar.styled.ts'
 import {defaultTheme} from "../../styles/theme.ts";
 import {Link} from "react-router-dom";
+import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
+import React from 'react'
 function Navbar() {
+    const {user} = React.useContext(GlobalContext)
     return (
 
         <Styles.NavbarWrapper>
@@ -12,8 +15,9 @@ function Navbar() {
 
                 <nav>
                     <Link to={'/'}> Home </Link>
-                    <Link to={'/profile'}> Perfil </Link>
-                    <Link to={'/signOut'}> Sair </Link>
+                    {user ? <Link to={'/profile'}> Perfil </Link> : <Link to={'/account/login'}> Entrar </Link> }
+                    {user ? <Link to={'/signOut'}> Sair </Link> : <Link to={'/account/signin'}> Criar conta </Link> }
+
                 </nav>
             </Styles.Navbar>
         </Styles.NavbarWrapper>

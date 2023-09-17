@@ -16,9 +16,9 @@ function Input<T extends FieldValues>({errorMessage, register, isSelect, labelNa
         ? <input {...register(props.id as Path<T>)} type={props.type} {...props} />
         : (
             <Styles.SelectWrapper>
-                <SelectInput register={register} id={'genre_1'}/>
-                <SelectInput register={register} id={'genre_2'}/>
-                <SelectInput register={register} id={'genre_3'}/>
+                <SelectInput register={register} id={'fav_gen_1'}/>
+                <SelectInput register={register} id={'fav_gen_2'}/>
+                <SelectInput register={register} id={'fav_gen_3'}/>
             </Styles.SelectWrapper>
         )
 

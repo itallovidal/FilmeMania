@@ -6,6 +6,7 @@ import {MagnifyingGlass} from "phosphor-react";
 import {IMAGE_PATH, IMovie, searchMovie} from "../../../../utils/api.ts";
 import SearchResult from "../SeachResult/SeachResult.tsx";
 import React, {FormEvent} from "react";
+import {supabase} from "../../../../utils/supabase.config.ts";
 
 const typeOptions = {
     SEARCH_MOVIE: 'SEARCH_MOVIE',
@@ -81,6 +82,7 @@ function PostForm() {
     })
 
 
+    console.log(supabase)
     function submitPost(e: FormEvent){
         e.preventDefault()
 
@@ -112,6 +114,7 @@ function PostForm() {
         postDispatch({
             type: "RESET",
         })
+        document.querySelector<HTMLInputElement>('#comment')!.value = ''
 
         console.log('submitted')
         console.log(postData)
