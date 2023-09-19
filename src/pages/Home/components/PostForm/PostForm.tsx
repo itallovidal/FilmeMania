@@ -117,7 +117,6 @@ function PostForm() {
         document.querySelector<HTMLInputElement>('#comment')!.value = ''
 
         console.log('submitted')
-        console.log(postData)
     }
 
     function handleSetStar(value: number){

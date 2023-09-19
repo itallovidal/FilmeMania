@@ -7,10 +7,10 @@ import {useForm} from "react-hook-form";
 
 import {z} from 'zod'
 import {zodResolver} from "@hookform/resolvers/zod";
-import {logIn} from "../../../utils/supabase.utils.ts";
 import {GlobalContext} from "../../../context/GlobalContextProvider.tsx";
 
 import React from 'react'
+import {userLogin} from "../../../utils/supabase/login.ts";
 
 const schema = z.object({
     username: z.string()
@@ -31,10 +31,11 @@ function Login() {
     function login(data: ILogin){
         console.log(data)
 
-        logIn(data).then((response)=>{
+        userLogin(data).then((response)=>{
             if(response){
                 setUserData(response)
                 navigate('/')
+                return
             }
 
             console.log('vish deu ruim')
