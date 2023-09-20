@@ -1,6 +1,6 @@
 import * as Styles from './profile.styled.ts';
 import Button from "../../globalComponents/Button/Button.tsx";
-import Post from "../../globalComponents/Post/Post.tsx";
+// import Post from "../../globalComponents/Post/Post.tsx";
 import React from "react";
 import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
 
@@ -38,10 +38,10 @@ function Profile() {
                 </Styles.ProfileWrapper>
 
                 <Styles.UserPosts>
-                    <Post/>
-                    <Post/>
-                    <Post/>
-                    <Post/>
+                    {/*<Post/>*/}
+                    {/*<Post/>*/}
+                    {/*<Post/>*/}
+                    {/*<Post/>*/}
                 </Styles.UserPosts>
             </Styles.Content>
         </main>
