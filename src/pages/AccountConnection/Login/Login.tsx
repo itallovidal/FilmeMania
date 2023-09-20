@@ -22,11 +22,13 @@ const schema = z.object({
 export interface ILogin extends z.infer<typeof schema>{}
 
 function Login() {
+    const [loginError, setLoginError] = React.useState<null | string>(null)
     const navigate = useNavigate()
     const {setUserData} = React.useContext(GlobalContext)
-    const {handleSubmit, formState: {errors},  register} = useForm<ILogin>({
-        resolver: zodResolver(schema)
+    const {handleSubmit,  formState: {errors},  register} = useForm<ILogin>({
+        resolver: zodResolver(schema),
     })
+
 
     function login(data: ILogin){
         console.log(data)
@@ -37,10 +39,13 @@ function Login() {
                 navigate('/')
                 return
             }
-
-            console.log('vish deu ruim')
-        })
-    }
+        }).catch((e)=>{
+        console.log(e)
+        if(e instanceof Error){
+            setLoginError(e.message)
+            console.log(e.message)
+        }
+    })}
 
     return (
         <AccountStyles.FormWrapper>
@@ -49,6 +54,8 @@ function Login() {
             <form onSubmit={handleSubmit(login)}>
                 <Input <ILogin> errorMessage={errors.username?.message} register={register} labelName={'Nome'} id={'username'} placeholder={'Digite seu nome..'}/>
                 <Input <ILogin> errorMessage={errors.password?.message} register={register} labelName={'Senha'} id={'password'} placeholder={'Digite sua senha..'}/>
+
+                {loginError && <p>{loginError}</p>}
                 <Button type={'submit'} variant={'primary'}>Entrar</Button>
             </form>
 

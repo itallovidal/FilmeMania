@@ -6,7 +6,8 @@ import {MagnifyingGlass} from "phosphor-react";
 import {IMAGE_PATH, IMovie, searchMovie} from "../../../../utils/api.ts";
 import SearchResult from "../SeachResult/SeachResult.tsx";
 import React, {FormEvent} from "react";
-import {supabase} from "../../../../utils/supabase.config.ts";
+import {GlobalContext} from "../../../../context/GlobalContextProvider.tsx";
+import {postRating} from "../../../../utils/supabase/postRating.ts";
 
 const typeOptions = {
     SEARCH_MOVIE: 'SEARCH_MOVIE',
@@ -32,6 +33,7 @@ interface IPostHandler {
 
 function PostForm() {
     const imageBackdrop = React.useRef<HTMLImageElement>(null)
+    const {user} = React.useContext(GlobalContext)
     const [postHandler, postDispatch] = React.useReducer((state: IPostHandler, action: IACTION)=>{
         if(action.type === "SEARCH_MOVIE"){
             return {...state, query: action.payload}
@@ -81,9 +83,7 @@ function PostForm() {
         error: null
     })
 
-
-    console.log(supabase)
-    function submitPost(e: FormEvent){
+    async function submitPost(e: FormEvent){
         e.preventDefault()
 
         if(postHandler.selectedMovie === null){
@@ -95,28 +95,21 @@ function PostForm() {
 
             return
         }
-
-        const comment = document.querySelector<HTMLInputElement>('#comment')!.value
-
         postDispatch({
             type: "SET_ERROR",
             payload: null
         })
 
-        const postData = {
-            comment,
-            movieId: postHandler.selectedMovie.id,
-            rating: postHandler.star_rate,
-            userId: 1
+
+        const comment = document.querySelector<HTMLInputElement>('#comment')!.value
+        const postResponse  = await postRating(user!.user_id, postHandler.selectedMovie.id, postHandler.star_rate, comment )
+
+        if(postResponse){
+            postDispatch({
+                type: "RESET",
+            })
+            document.querySelector<HTMLInputElement>('#comment')!.value = ''
         }
-
-
-        postDispatch({
-            type: "RESET",
-        })
-        document.querySelector<HTMLInputElement>('#comment')!.value = ''
-
-        console.log('submitted')
     }
 
     function handleSetStar(value: number){
@@ -167,6 +160,7 @@ function PostForm() {
     }, [postHandler.query])
 
     let posterImage = poster;
+
     if(postHandler.selectedMovie && postHandler.selectedMovie.backdrop_path !== null){
         posterImage =  IMAGE_PATH + postHandler.selectedMovie.backdrop_path
     }

@@ -26,6 +26,7 @@ export const GlobalStyled =  createGlobalStyle`
     }
     
     main{
+      min-height: 100vh;
       margin-top: calc(4rem + 1.2ch + 2rem);
       animation: ${show} 400ms forwards;
       margin-bottom: calc(4rem + 2rem);

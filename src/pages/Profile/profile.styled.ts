@@ -32,6 +32,7 @@ export const ProfileTab = styled.aside`
     font-size: 2rem;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
+    text-transform: capitalize;
     
     position: relative;
     

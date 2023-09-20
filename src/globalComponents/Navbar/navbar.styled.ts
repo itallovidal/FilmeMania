@@ -25,19 +25,27 @@ export const Navbar = styled.div`
   }
   
   nav{
-    
-    a{
+    button{
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      outline: none;
+      color: white;
+    }
+    a, button{
       padding: 1.1rem 1.5rem;
       position: relative;
       transition: 400ms;
       
-      &:not(a:first-child):before{
+      &:not(:first-child):before{
         content: '';
         width: 2px;
         background: white;
         height: 1rem;
         left: -1px;
         position: absolute; 
+        top: 50%;
+        transform: translateY(-50%);
       }
       
       &:hover{

@@ -1,16 +1,11 @@
 import {supabase} from "../supabase.config.ts";
 
-interface IGetUser {
-    username: string,
-    password: string
-}
-export async function getUser(userLogin : IGetUser){
+export async function getUserName(id: string) : Promise<{ username: string }>{
     const {data, error} =
         await supabase.from('users')
-            .select('id, username')
+            .select('username')
             .match({
-                username: userLogin.username,
-                password: userLogin.password
+                id: id
             }).single()
 
     console.log(error)
@@ -18,5 +13,9 @@ export async function getUser(userLogin : IGetUser){
         throw new Error('Usuário não encontrado.')
     }
 
-    return data
+    if(data){
+        return data.username
+    }
+
+    throw new Error('data eh null.')
 }

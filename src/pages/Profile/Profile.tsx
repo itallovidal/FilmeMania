@@ -7,6 +7,8 @@ import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
 function Profile() {
     const [activeTab, setActiveTab] = React.useState(false)
     const {user} = React.useContext(GlobalContext)
+
+    console.log(user)
     return (
         <main>
             <Styles.Content>

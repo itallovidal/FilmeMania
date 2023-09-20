@@ -1,28 +1,70 @@
 import * as Styles from './post.styled';
 import StarsRating from "../StarsRating/StarsRating.tsx";
-import  post from '../../assets/homearanha.jpg';
+import {IPOST} from "../../utils/supabase/getAllPosts.ts";
+import React from "react";
+import {getUserFavoriteGenres} from "../../utils/supabase/getUserFavoriteGenres.ts";
+import {getUserName} from "../../utils/supabase/getUserName.ts";
+import {getMovie, IMAGE_PATH} from "../../utils/api.ts";
 
-function Post() {
-    return (
+interface PostProps{
+    postData: IPOST
+}
+
+interface IPostInfo{
+    username: string,
+    genre_1: string,
+    genre_2: string,
+    genre_3: string,
+    genres: string[],
+    poster: string,
+    title: string,
+    rating: number
+}
+function Post({postData} : PostProps) {
+    const [post, setPost] = React.useState<IPostInfo | null>(null)
+
+    React.useEffect(()=>{
+        async function getPostData(){
+            const responseUserGenre= await getUserFavoriteGenres(postData.fk_user_id)
+            const {username} = await getUserName(postData.fk_user_id)
+
+            const responseMovie = await getMovie(postData.movie_id)
+
+            setPost({
+                ...responseMovie,
+                username: username,
+                genre_1: responseUserGenre[0].genres.name,
+                genre_2: responseUserGenre[1].genres.name,
+                genre_3: responseUserGenre[2].genres.name,
+                rating: postData.rating
+            })
+        }
+
+        getPostData()
+
+
+    },[postData])
+
+    return post ? (
         <Styles.PostWrapper>
-            <picture style={{backgroundImage: `url(${post})`}}>
-                <img src={post} alt=""/>
+            <picture style={{backgroundImage: `url(${IMAGE_PATH + post.poster})`}}>
+                <img src={IMAGE_PATH+ post.poster} alt=""/>
             </picture>
 
             <Styles.DataWrapper>
-                <h1>Homem Aranha: De volta ao lar</h1>
-                <StarsRating initialValue={3} isChangeable={false}/>
-                <Styles.Genres>ação / drama </Styles.Genres>
-                <Styles.CommentSection> Eu achei esse filme maneiro até, porém nunca vi ele todo kkk </Styles.CommentSection>
+                <h1>{post.title}</h1>
+                <StarsRating initialValue={post.rating} isChangeable={false}/>
+                <Styles.Genres>{post.genres[0]} | {post.genres[1]}</Styles.Genres>
+                <Styles.CommentSection> {postData.comment} </Styles.CommentSection>
 
                 <Styles.PersonPosted>
-                    <p> Itallo Vidal</p>
-                    <span> Drama / Suspense / Terror </span>
+                    <p> {post.genre_1} | {post.genre_2} | {post.genre_3} </p>
+                    <span> {post.username} </span>
                 </Styles.PersonPosted>
             </Styles.DataWrapper>
 
         </Styles.PostWrapper>
-    );
+    ) : null
 }
 
 export default Post;

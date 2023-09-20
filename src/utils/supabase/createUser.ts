@@ -3,12 +3,15 @@ import {IUserData} from "../../context/GlobalContextProvider.tsx";
 import {insertUser} from "./insertUser.ts";
 import {insertFavGenres} from "./insertFavoriteGenres.ts";
 import {getUserFavoriteGenres} from "./getUserFavoriteGenres.ts";
+import {checkUser} from "./checkUser.ts";
 
 
 
 
 
 export async function createUser(user: ISignin ) : Promise<IUserData | false>{
+    await checkUser(user)
+
     const insertUserResponse = await insertUser(user)
 
     if(!insertUserResponse){

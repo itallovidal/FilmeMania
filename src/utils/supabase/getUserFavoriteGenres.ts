@@ -15,18 +15,19 @@ function isDataValid(obj: unknown): obj is IGenres[]{
 }
 
 
-export async function getUserFavoriteGenres(id: string){
+export async function getUserFavoriteGenres(id: string) : Promise<IGenres[]>{
     const {data, error} : {data: unknown, error: PostgrestError | null} =
         await supabase.from('fav_genres')
             .select('genres(name)')
             .eq('fk_user_id', id)
 
     if(error){
-        return false
+        throw new Error('erro para pegar os generos favoritos')
     }
 
     if(isDataValid(data)){
         return data
     }
-    return false
+
+    throw new Error('erro para pegar os generos favoritos')
 }

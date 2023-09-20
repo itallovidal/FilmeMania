@@ -26,6 +26,7 @@ const schema = z.object({
 export interface ISignin extends z.infer<typeof schema>{}
 
 function SignIn() {
+    const [error, setError] = React.useState<null | string>(null)
     const navigate = useNavigate()
     const {setUserData} = React.useContext(GlobalContext)
     const {handleSubmit, register, formState:{errors}} = useForm<ISignin>({
@@ -41,6 +42,8 @@ function SignIn() {
             else{
                 console.log('putise')
             }
+        }).catch((e)=>{
+            setError(e.message)
         })
     }
 
@@ -52,6 +55,9 @@ function SignIn() {
                 <Input <ISignin> errorMessage={errors.username?.message} register={register} labelName={'Nome'} id={'username'} placeholder={'Digite seu nome..'}/>
                 <Input <ISignin> errorMessage={errors.password?.message} register={register} labelName={'Senha'} id={'password'} placeholder={'Digite sua senha..'}/>
                 <Input <ISignin> errorMessage={errors.fav_gen_1 ? 'Selecione 3 gêneros diferentes.' : undefined } register={register} isSelect labelName={'Gêneros Favoritos'} id={'favoriteGenres'}/>
+
+                {error && <p>{error}</p>}
+
                 <Button variant={'primary'}>Cadastrar</Button>
             </form>
 
