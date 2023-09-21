@@ -8,7 +8,6 @@ export async function getUserName(id: string) : Promise<{ username: string }>{
                 id: id
             }).single()
 
-    console.log(error)
     if(error?.code === 'PGRST116'){
         throw new Error('Usuário não encontrado.')
     }

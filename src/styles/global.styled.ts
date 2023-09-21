@@ -11,6 +11,12 @@ export const GlobalStyled =  createGlobalStyle`
       margin: 0;
       box-sizing: border-box;
     }
+  
+    @media(max-width: 900px){
+      body{
+        display: none;
+      }
+    }
     
     body{
       background-image: ${({theme})=> theme.COLORS.GRADIENT};

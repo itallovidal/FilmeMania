@@ -3,7 +3,7 @@ import {HTMLProps} from "react";
 import {show} from "../../../../styles/global.styled.ts";
 
 export const PostWrapper = styled.div`
-  background: white;
+  //background: white;
   display: flex;
   max-width: 70rem;
   width: 90%;
@@ -11,19 +11,39 @@ export const PostWrapper = styled.div`
   height: 20rem;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: ${({theme})=> theme.SHADOW};
+  box-shadow: ${({theme}) => theme.SHADOW};
   border: 2px solid white;
+  position: relative;
+  background-size: cover;
+  background-position: center;
 
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: .6;
+  }
+  
+  &>*{
+    z-index: 2;
+    color: white;
+  }
   picture {
+    z-index: 2;
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
     overflow: hidden;
-    width: 35%;
+    width: 55%;
     height: 100%;
-    
-    .loaded{
+    max-width: 20rem;
+
+    .loaded {
       animation: ${show} 300ms forwards;
     }
-    
+
     img {
       transform: scale(1.2) rotate(-8.5deg);
       height: 100%;
@@ -31,12 +51,14 @@ export const PostWrapper = styled.div`
       opacity: 0;
     }
   }
+  
 `
 
 interface IForm extends HTMLProps<HTMLFormElement>{}
 
 export const FormWrapper = styled.form<IForm>`
   padding: 2rem;
+  padding-left: 0;
   flex: 1;
   justify-content: right;
   display: flex;
@@ -56,14 +78,16 @@ export const Wrapper = styled.div`
 export const SearchWrapper = styled.div`
 
   margin-bottom: 1rem;
-  position: relative;
-  
-  label{
+
+  &>div{
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    outline: none;
   }
 
   input{
-    margin-top: 1rem;
-    border-radius: 5px;
     background-color: ${({theme})=> theme.COLORS.NEUTRAL};
     padding: 1rem;
     width: 100%;
@@ -72,17 +96,20 @@ export const SearchWrapper = styled.div`
   }
 
   #searchButton{
-    padding: .8rem;
-    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    //margin-bottom: 1rem;
     position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(calc(-50% + 1rem));
+    right: -1%;
+    top: 0;
+    color: black;
+    //transform: translateY(calc(50%));
     z-index: 100;
+    background: ${({theme})=> theme.COLORS.STARS_COLOR}
   }
 `
 export const StarsSection = styled.div`
-  width: 40%;
+  width: 60%;
   position: relative;
   
   
@@ -102,10 +129,10 @@ export const StarsSection = styled.div`
 `
 
 export const CommentSection = styled.div`
-  width: 60%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  
+  min-width: 13.125rem;  
 
   #comment{
     resize: none;

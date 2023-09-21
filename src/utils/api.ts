@@ -36,7 +36,6 @@ interface IGetMovie{
 export async function getMovie(id: number): Promise<IGetMovie>{
     const response = await fetch(`${API_BASE_PATH}movie/${id}?api_key=${AUTHORIZATION}`)
     const data = await response.json()
-    console.log(data)
     return {
         genres: [data.genres[0].name, data.genres[1].name],
         poster: data.poster_path,

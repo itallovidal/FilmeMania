@@ -4,7 +4,7 @@ export const defaultTheme  = {
         PRIMARY: '#053B50',
         SECONDARY: '#091C27',
         NEUTRAL: '#EEEEEE',
-        STARS_COLOR: '#DAA520',
+        STARS_COLOR: '#ffc43d',
         GRADIENT: 'linear-gradient(40deg, rgba(5,0,85,1) 0%, rgba(3,155,120,1) 100%)',
         DARK_GRADIENT: 'linear-gradient(40deg, rgba(5,38,54,1) 46%, rgba(11,116,81,1) 100%)'
     },

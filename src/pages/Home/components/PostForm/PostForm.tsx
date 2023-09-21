@@ -8,6 +8,7 @@ import SearchResult from "../SeachResult/SeachResult.tsx";
 import React, {FormEvent} from "react";
 import {GlobalContext} from "../../../../context/GlobalContextProvider.tsx";
 import {postRating} from "../../../../utils/supabase/postRating.ts";
+import {useNavigate} from "react-router-dom";
 
 const typeOptions = {
     SEARCH_MOVIE: 'SEARCH_MOVIE',
@@ -32,6 +33,7 @@ interface IPostHandler {
 }
 
 function PostForm() {
+    const navigate = useNavigate()
     const imageBackdrop = React.useRef<HTMLImageElement>(null)
     const {user} = React.useContext(GlobalContext)
     const [postHandler, postDispatch] = React.useReducer((state: IPostHandler, action: IACTION)=>{
@@ -105,6 +107,8 @@ function PostForm() {
         const postResponse  = await postRating(user!.user_id, postHandler.selectedMovie.id, postHandler.star_rate, comment )
 
         if(postResponse){
+
+            navigate('/?newPost')
             postDispatch({
                 type: "RESET",
             })
@@ -167,7 +171,7 @@ function PostForm() {
 
 
     return (
-        <Styles.PostWrapper>
+        <Styles.PostWrapper style={{backgroundImage: `url(${posterImage})`}}>
             <picture>
                 <img
                     ref={imageBackdrop}
@@ -183,13 +187,15 @@ function PostForm() {
                         <Styles.SearchWrapper>
                             <label htmlFor="">Selecione o filme e a avaliação</label>
 
-                            <input id={'movieName'} type="text" placeholder={'Procure pelo filme.'}/>
-                            
-                            <Button
-                                onClick={()=> handleSearch()}
-                                type={'button'}
-                                id={'searchButton'}
-                                variant={"neutral"}><MagnifyingGlass size={16} /></Button>
+                            <div>
+                                <input id={'movieName'} type="text" placeholder={'Procure pelo filme.'}/>
+
+                                <Button
+                                    onClick={()=> handleSearch()}
+                                    type={'button'}
+                                    id={'searchButton'}
+                                    variant={"neutral"}><MagnifyingGlass size={16} /></Button>
+                            </div>
                         </Styles.SearchWrapper>
 
                         <SearchResult
@@ -213,7 +219,7 @@ function PostForm() {
                             id={'comment'}
                             name={'comment'}/>
 
-                        <Button type={'submit'} variant={'primary'}>Postar</Button>
+                        <Button type={'submit'} variant={'neutral'}>Postar</Button>
                     </Styles.CommentSection>
                 </Styles.Wrapper>
             </Styles.FormWrapper>
