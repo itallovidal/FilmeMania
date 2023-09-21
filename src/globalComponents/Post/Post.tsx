@@ -42,7 +42,6 @@ function Post({postData} : PostProps) {
 
         getPostData()
 
-
     },[postData])
 
     return post ? (
@@ -58,8 +57,8 @@ function Post({postData} : PostProps) {
                 <Styles.CommentSection> {postData.comment} </Styles.CommentSection>
 
                 <Styles.PersonPosted>
-                    <p> {post.genre_1} | {post.genre_2} | {post.genre_3} </p>
                     <span> {post.username} </span>
+                    <p> {post.genre_1} | {post.genre_2} | {post.genre_3} </p>
                 </Styles.PersonPosted>
             </Styles.DataWrapper>
 

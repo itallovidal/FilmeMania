@@ -14,7 +14,7 @@ export async function getUserName(id: string) : Promise<{ username: string }>{
     }
 
     if(data){
-        return data.username
+        return data
     }
 
     throw new Error('data eh null.')

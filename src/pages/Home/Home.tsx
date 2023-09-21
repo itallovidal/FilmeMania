@@ -8,8 +8,6 @@ function Home() {
     const {user} = React.useContext(GlobalContext)
     const [posts, setPosts] = React.useState<IPOST[]>([])
 
-    console.log(posts)
-
     React.useEffect(()=>{
         getAllPosts().then((data)=>{
             setPosts(data)
