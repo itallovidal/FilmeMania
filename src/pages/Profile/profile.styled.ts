@@ -11,6 +11,7 @@ export const ProfileWrapper = styled.aside`
     position: sticky;
     top: 8rem;
     height: fit-content;
+    max-width: 31rem;
   
   #profileTab.activeTab{
     height: 20rem;
@@ -18,8 +19,12 @@ export const ProfileWrapper = styled.aside`
   }
   
   #adminTab.activeTab{
-    height: 31.25rem;
+    height: 14rem;
     justify-content: center;
+    padding: 2rem;
+    &>div{
+      margin-top: 1rem;
+    }
   }
 `
 export const ProfileTab = styled.aside`
@@ -61,8 +66,8 @@ export const UserPosts = styled.aside`
     max-width: 35rem;
     gap: 1rem;
 `
-export const AdminTab = styled.section`
-  padding: 2rem;
+export const SearchPostTab = styled.section`
+  padding: 0;
   background: white;
   width: 80%;
   border-radius: 8px;
@@ -73,8 +78,17 @@ export const AdminTab = styled.section`
   justify-content: flex-start;
   cursor: pointer;
   
-  height: calc(2rem + 2rem + 1.9rem);
+  height: 0;
   overflow: hidden;
+  
+  input{
+    background-color: ${({theme})=> theme.COLORS.NEUTRAL};
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: .8rem;
+    width: 100%;
+  }
   
   h1{
     margin: 0;
@@ -84,7 +98,7 @@ export const AdminTab = styled.section`
 
 
 
-export const ButtonWrapper = styled.div`
+export const FormWrapper = styled.div`
   margin-top: 2rem;
   
     button{

@@ -1,4 +1,12 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const showPost = keyframes`
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 500px;
+  }
+`
 
 export const PostWrapper = styled.div`
   max-width: calc(35rem - .5rem);
@@ -10,6 +18,10 @@ export const PostWrapper = styled.div`
   overflow: hidden;
   box-shadow: ${({theme})=> theme.SHADOW};
   border: 2px solid white;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: ${showPost} 700ms 300ms forwards;
+  max-height: 0;
   
   picture{
     width: 100%;

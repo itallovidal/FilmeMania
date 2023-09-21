@@ -7,7 +7,8 @@ import {getUserName} from "../../utils/supabase/getUserName.ts";
 import {getMovie, IMAGE_PATH} from "../../utils/api.ts";
 
 interface PostProps{
-    postData: IPOST
+    postData: IPOST,
+    filter?: string
 }
 
 interface IPostInfo{
@@ -18,9 +19,9 @@ interface IPostInfo{
     genres: string[],
     poster: string,
     title: string,
-    rating: number
+    rating: number,
 }
-function Post({postData} : PostProps) {
+function Post({postData, filter} : PostProps) {
     const [post, setPost] = React.useState<IPostInfo | null>(null)
 
     React.useEffect(()=>{
@@ -29,6 +30,7 @@ function Post({postData} : PostProps) {
             const {username} = await getUserName(postData.fk_user_id)
 
             const responseMovie = await getMovie(postData.movie_id)
+
 
             setPost({
                 ...responseMovie,
@@ -44,8 +46,13 @@ function Post({postData} : PostProps) {
 
     },[postData])
 
-    return post ? (
-        <Styles.PostWrapper>
+    if(!post){
+        return null
+    }
+
+    if(filter){
+        if(post.title.toLowerCase() === filter.toLowerCase())
+            return (<Styles.PostWrapper>
             <picture style={{backgroundImage: `url(${IMAGE_PATH + post.poster})`}}>
                 <img src={IMAGE_PATH+ post.poster} alt=""/>
             </picture>
@@ -62,8 +69,29 @@ function Post({postData} : PostProps) {
                 </Styles.PersonPosted>
             </Styles.DataWrapper>
 
-        </Styles.PostWrapper>
-    ) : null
+        </Styles.PostWrapper>)
+
+        return null
+    }
+
+    return (<Styles.PostWrapper>
+            <picture style={{backgroundImage: `url(${IMAGE_PATH + post.poster})`}}>
+                <img src={IMAGE_PATH+ post.poster} alt=""/>
+            </picture>
+
+            <Styles.DataWrapper>
+                <h1>{post.title}</h1>
+                <StarsRating initialValue={post.rating} isChangeable={false}/>
+                <Styles.Genres>{post.genres[0]} | {post.genres[1]}</Styles.Genres>
+                <Styles.CommentSection> {postData.comment} </Styles.CommentSection>
+
+                <Styles.PersonPosted>
+                    <span> {post.username} </span>
+                    <p> {post.genre_1} | {post.genre_2} | {post.genre_3} </p>
+                </Styles.PersonPosted>
+            </Styles.DataWrapper>
+
+        </Styles.PostWrapper>)
 }
 
 export default Post;

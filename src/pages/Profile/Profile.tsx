@@ -3,12 +3,33 @@ import Button from "../../globalComponents/Button/Button.tsx";
 // import Post from "../../globalComponents/Post/Post.tsx";
 import React from "react";
 import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
+import {getAllUserPosts, IPOST} from "../../utils/supabase/getAllPosts.ts";
+import Post from "../../globalComponents/Post/Post.tsx";
 
 function Profile() {
-    const [activeTab, setActiveTab] = React.useState(false)
     const {user} = React.useContext(GlobalContext)
+    const [posts, setPosts] = React.useState<IPOST[]>([])
+    const [filter, setFilter] = React.useState<string>('')
+    const [activeTab, setActiveTab] = React.useState(false)
+    const searchInput = React.useRef<HTMLInputElement>(null)
 
-    console.log(user)
+
+    function searchUserPost(){
+        console.log('entrou na pesquisa')
+        if(searchInput.current){
+            setFilter(searchInput.current.value)
+            console.log('setou o filter')
+        }
+    }
+
+
+    React.useEffect(()=>{
+        getAllUserPosts(user!.user_id).then((data)=>{
+            console.log('fetch nos posts do perfil')
+            setPosts(data)
+        })
+    }, [filter])
+
     return (
         <main>
             <Styles.Content>
@@ -20,28 +41,27 @@ function Profile() {
                         <p> {user!.fav_gen_2} </p>
                         <p> {user!.fav_gen_3}</p>
 
-                        <Button variant={"neutral"}>Atualizar Perfil</Button>
+                        <Button onClick={()=>setActiveTab(prev => !prev) } variant={"neutral"}>Pesquisar Filme</Button>
+
                     </Styles.ProfileTab>
 
-                    <Styles.AdminTab id={'adminTab'} onClick={()=> setActiveTab(prev => !prev)} className={activeTab ? 'activeTab' : undefined}>
-                        <h1>Painel do Moderador</h1>
+                    <Styles.SearchPostTab id={'adminTab'} className={activeTab ? 'activeTab' : undefined}>
 
-                        {/*<Input id={'searchUser'} labelName={'Pesquisar usuário'} placeholder={'Pesquise um usuário'}/>*/}
+                        <Styles.FormWrapper>
+                            <input ref={searchInput} type="text" placeholder={'digite o nome do filme..'}/>
+                            <Button onClick={()=> searchUserPost()} variant={'neutral'}> Pesquisar </Button>
+                            <Button onClick={()=> {
+                                setFilter('')
+                            }} variant={'neutral'}> Limpar filtro </Button>
+                        </Styles.FormWrapper>
 
-                        <Styles.ButtonWrapper>
-                            <Button variant={'neutral'}> Excluir </Button>
-                            <Button variant={'neutral'}> Limpar Postagens </Button>
-                            <Button variant={'neutral'}> Promover a MOD </Button>
-                        </Styles.ButtonWrapper>
-
-                    </Styles.AdminTab>
+                    </Styles.SearchPostTab>
                 </Styles.ProfileWrapper>
 
                 <Styles.UserPosts>
-                    {/*<Post/>*/}
-                    {/*<Post/>*/}
-                    {/*<Post/>*/}
-                    {/*<Post/>*/}
+                    {posts.map((post)=> {
+                        return <Post filter={filter} key={post.id} postData={post}/>
+                    }).reverse()}
                 </Styles.UserPosts>
             </Styles.Content>
         </main>

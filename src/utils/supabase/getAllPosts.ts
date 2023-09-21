@@ -32,3 +32,20 @@ export async function getAllPosts(): Promise<IPOST[]>{
 
     throw new Error('Erro nos posts')
 }
+
+export async function getAllUserPosts(id: string): Promise<IPOST[]>{
+    const {data, error} : {data: unknown, error: PostgrestError | null} =
+        await supabase.from('posts')
+            .select('comment, id, movie_id, rating, fk_user_id ')
+            .eq('fk_user_id', id)
+
+    if(error){
+        throw new Error('Falha na requisição')
+    }
+
+    if(isArrayPosts(data)){
+        return data
+    }
+
+    throw new Error('Erro nos posts')
+}

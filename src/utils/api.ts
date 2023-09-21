@@ -1,6 +1,6 @@
-const AUTHORIZATION = '19c7f0980d03f9d9dc3a583e89766f55'
+const AUTHORIZATION = '19c7f0980d03f9d9dc3a583e89766f55&language=pt-Br'
 const API_BASE_PATH = 'https://api.themoviedb.org/3/'
-export const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
+export const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500'
 
 
 export interface IMovie{
