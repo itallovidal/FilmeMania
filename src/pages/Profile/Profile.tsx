@@ -52,7 +52,8 @@ function Profile() {
                             <Button onClick={()=> searchUserPost()} variant={'neutral'}> Pesquisar </Button>
                             <Button onClick={()=> {
                                 setFilter('')
-                            }} variant={'neutral'}> Limpar filtro </Button>
+                                setActiveTab(prev => !prev)
+                            }} variant={'neutral'}> Fechar Filtro </Button>
                         </Styles.FormWrapper>
 
                     </Styles.SearchPostTab>

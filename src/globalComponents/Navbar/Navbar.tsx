@@ -17,7 +17,6 @@ function Navbar() {
                     <Link to={'/'}> Home </Link>
                     {user ? <Link to={'/profile'}> Perfil </Link> : <Link to={'/account/login'}> Entrar </Link> }
                     {user ? (<button onClick={()=> resetUserData()}> Sair </button>) : <Link to={'/account/signin'}> Criar conta </Link> }
-
                 </nav>
             </Styles.Navbar>
         </Styles.NavbarWrapper>
