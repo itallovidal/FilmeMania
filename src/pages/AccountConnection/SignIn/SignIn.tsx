@@ -65,7 +65,7 @@ function SignIn() {
 
             <Styles.SignUpWrapper>
                 <p>Já possui conta?</p>
-                <Link to={'/account/login'}>Cadastre-se</Link>
+                <Link to={'/account/login'}>Entre</Link>
             </Styles.SignUpWrapper>
 
         </AccountStyles.FormWrapper>

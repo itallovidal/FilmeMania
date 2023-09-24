@@ -104,7 +104,7 @@ function PostForm() {
 
 
         const comment = document.querySelector<HTMLInputElement>('#comment')!.value
-        const postResponse  = await postRating(user!.user_id, postHandler.selectedMovie.id, postHandler.star_rate, comment )
+        const postResponse  = await postRating(user!.user_id, postHandler.selectedMovie.id, postHandler.star_rate, postHandler.selectedMovie.title, comment )
 
         if(postResponse){
 

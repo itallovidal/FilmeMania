@@ -6,8 +6,8 @@ export const AccountWrapper = styled.main`
   width: 100%;
   margin: 0 auto;
   display: flex;
-  height: 100vh;
-  height: 100svh;
+  min-height: 100vh;
+  min-height: 100svh;
   align-items: center;
   padding-top: calc(3rem + 1.2ch + 2rem);
 

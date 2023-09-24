@@ -61,7 +61,7 @@ function Login() {
 
             <Styles.SignUpWrapper>
                 <p>Não possui conta?</p>
-                <Link to={'/account/signin'}>Entrar </Link>
+                <Link to={'/account/signin'}> Cadastre-se </Link>
             </Styles.SignUpWrapper>
 
         </AccountStyles.FormWrapper>

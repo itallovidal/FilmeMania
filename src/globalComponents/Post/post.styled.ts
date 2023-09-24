@@ -12,7 +12,7 @@ export const PostWrapper = styled.div`
   width: 100%;
   background: white;
   display: flex;
-  height: 21rem;
+  height: 23rem;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: ${({theme})=> theme.SHADOW};
@@ -72,6 +72,15 @@ export const DataWrapper = styled.div`
 `
 export const Genres = styled.p`
   margin-bottom: 1rem;
+  display: flex;
+  gap: .5rem;
+  
+  span{
+    background: ${({theme})=>theme.COLORS.PRIMARY};
+    padding: .5rem;
+    color: white;
+    border-radius: 6px;
+  }
 `
 export const CommentSection = styled.p`
   //height: 8ch;
