@@ -5,6 +5,10 @@ export const Content = styled.aside`
   display: flex;
   margin: 0 auto;
 
+  @media(max-width: 665px){
+    flex-direction: column;
+  }
+
 `
 export const ProfileWrapper = styled.aside`
     flex: 1;
@@ -65,6 +69,14 @@ export const UserPosts = styled.aside`
     flex-wrap: wrap;
     max-width: 35rem;
     gap: 1rem;
+  
+  &>div{
+    @media(max-width: 665px){
+      max-width: 100%;
+    }
+  }
+
+
 `
 export const SearchPostTab = styled.section`
   padding: 0;
@@ -80,6 +92,11 @@ export const SearchPostTab = styled.section`
   
   height: 0;
   overflow: hidden;
+
+  @media(max-width: 665px){
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
   
   input{
     background-color: ${({theme})=> theme.COLORS.NEUTRAL};

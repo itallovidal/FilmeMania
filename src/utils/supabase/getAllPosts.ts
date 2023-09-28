@@ -6,7 +6,8 @@ export interface IPOST{
     id:  number,
     movie_id: number,
     rating: number,
-    fk_user_id: string
+    fk_user_id: string,
+    movie_title: string
 }
 
 function isArrayPosts(posts: unknown): posts is IPOST[]{
@@ -37,7 +38,7 @@ export async function getAllPosts(): Promise<IPOST[]>{
 export async function getAllUserPosts(id: string): Promise<IPOST[]>{
     const {data, error} : {data: unknown, error: PostgrestError | null} =
         await supabase.from('posts')
-            .select('comment, id, movie_id, rating, fk_user_id ')
+            .select('comment, id, movie_id, rating, fk_user_id, movie_title')
             .eq('fk_user_id', id)
 
     if(error){

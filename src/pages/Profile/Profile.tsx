@@ -1,6 +1,5 @@
 import * as Styles from './profile.styled.ts';
 import Button from "../../globalComponents/Button/Button.tsx";
-// import Post from "../../globalComponents/Post/Post.tsx";
 import React from "react";
 import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
 import {getAllUserPosts, IPOST} from "../../utils/supabase/getAllPosts.ts";
@@ -9,7 +8,7 @@ import Post from "../../globalComponents/Post/Post.tsx";
 function Profile() {
     const {user} = React.useContext(GlobalContext)
     const [posts, setPosts] = React.useState<IPOST[]>([])
-    const [filter, setFilter] = React.useState<string>('')
+    const [filter, setFilter] = React.useState<string | null>(null)
     const [activeTab, setActiveTab] = React.useState(false)
     const searchInput = React.useRef<HTMLInputElement>(null)
 
@@ -51,17 +50,25 @@ function Profile() {
                             <input ref={searchInput} type="text" placeholder={'digite o nome do filme..'}/>
                             <Button onClick={()=> searchUserPost()} variant={'neutral'}> Pesquisar </Button>
                             <Button onClick={()=> {
-                                setFilter('')
-                            }} variant={'neutral'}> Limpar filtro </Button>
+                                setFilter(null)
+                                setActiveTab(prev => !prev)
+                            }} variant={'neutral'}> Fechar Filtro </Button>
                         </Styles.FormWrapper>
 
                     </Styles.SearchPostTab>
                 </Styles.ProfileWrapper>
-
+                {/*<Post key={post.id} postData={post}/>*/}
                 <Styles.UserPosts>
-                    {posts.map((post)=> {
-                        return <Post filter={filter} key={post.id} postData={post}/>
-                    }).reverse()}
+                    {
+                        posts.map(post => {
+                            if(filter){
+                                return post.movie_title.toLowerCase().includes(filter.toLowerCase()) ? <Post key={post.id} postData={post}/> : null
+                            }
+                            else {
+                                return <Post key={post.id} postData={post}/>
+                            }
+                        })
+                    }
                 </Styles.UserPosts>
             </Styles.Content>
         </main>

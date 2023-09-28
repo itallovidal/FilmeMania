@@ -17,22 +17,47 @@ export const PostWrapper = styled.div`
   background-size: cover;
   background-position: center;
 
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    opacity: .6;
+  @media (max-width: 980px){
+    flex-direction: column;
+    height: 30rem;
+    background-image: none !important;
+    background: white;
   }
   
-  &>*{
-    z-index: 2;
-    color: white;
+  @media(min-width: 981px){
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      opacity: .6;
+    }  
+    &>*{
+         z-index: 2;
+         color: white;
+       }
   }
+
+  @media (max-width: 665px){
+    height: auto;
+  }
+  
+
   picture {
+    @media(max-width: 980px){
+      width: 100%;
+      background: blue;
+      clip-path: none;
+      max-width: 100%;
+    }
+
+    @media (max-width: 665px){
+      max-height: 10rem;
+    }
+    
     z-index: 2;
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
     overflow: hidden;
@@ -45,6 +70,10 @@ export const PostWrapper = styled.div`
     }
 
     img {
+      @media(max-width: 980px){
+        transform: none;
+      }
+      
       transform: scale(1.2) rotate(-8.5deg);
       height: 100%;
       object-fit: cover;
@@ -57,8 +86,11 @@ export const PostWrapper = styled.div`
 interface IForm extends HTMLProps<HTMLFormElement>{}
 
 export const FormWrapper = styled.form<IForm>`
+  @media (min-width: 981px){
+    padding-left: 0;
+  }
+  
   padding: 2rem;
-  padding-left: 0;
   flex: 1;
   justify-content: right;
   display: flex;
@@ -73,6 +105,14 @@ export const Wrapper = styled.div`
     display: flex;
     width: 100%;
     gap: 1rem;
+
+  @media (max-width: 665px){
+    flex-direction: column;
+    
+    &>div{
+      width: 100%;
+    }
+  }
 `
 
 export const SearchWrapper = styled.div`

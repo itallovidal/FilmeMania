@@ -5,6 +5,7 @@ import React from "react";
 import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
 import {getAllPosts, IPOST} from "../../utils/supabase/getAllPosts.ts";
 import {useLocation, useNavigate} from "react-router-dom";
+import LoginMessage from "./components/loginMessage/loginMessage.tsx";
 function Home() {
     const {user} = React.useContext(GlobalContext)
     const [posts, setPosts] = React.useState<IPOST[]>([])
@@ -25,7 +26,7 @@ function Home() {
 
     return (
         <main>
-            {user ? <PostForm/> : null}
+            {user ? <PostForm/> : <LoginMessage/>}
 
             <Styles.PostsWrapper>
                 {posts.map((post)=> <Post key={post.id} postData={post}/>)}
