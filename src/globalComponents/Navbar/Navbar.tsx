@@ -20,9 +20,9 @@ function Navbar() {
     return (
         <Styles.NavbarWrapper>
             <Styles.Navbar>
-                <picture>
-                    <h1 style={{fontFamily: defaultTheme.FONT.PRIMARY}}>FilmeMania</h1>
-                </picture>
+                <div>
+                    <Link to={'/'} style={{fontFamily: defaultTheme.FONT.PRIMARY}}>FilmeMania</Link>
+                </div>
 
                 <button className={'mobileButton'} onClick={()=> setNavbarActive((prev)=> !prev)}><List size={32}/></button>
 

@@ -7,6 +7,7 @@ export const NavbarWrapper = styled.div`
   left: 0;
   width: 100%;
   z-index: 10;
+  padding-block: 1rem;
   
 `
 
@@ -18,6 +19,10 @@ export const Navbar = styled.div`
   max-width: 70rem;
   margin: 0 auto;
   color: white;
+  
+  &>div a{
+    font-size: 2rem;
+  }
  
   @media(min-width: 666px){
     .mobileButton{
