@@ -1,14 +1,23 @@
 import * as Styles from './navbar.styled.ts'
 import {defaultTheme} from "../../styles/theme.ts";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {GlobalContext} from "../../context/GlobalContextProvider.tsx";
 import React from 'react'
 import {List, XCircle} from "phosphor-react";
 function Navbar() {
     const {user, resetUserData} = React.useContext(GlobalContext)
     const [navbarActive, setNavbarActive] = React.useState(false)
-    return (
+    const {pathname} = useLocation()
 
+    React.useEffect(()=>{
+        console.log(pathname)
+        console.log(navbarActive)
+        if(navbarActive){
+            setNavbarActive(false)
+        }
+    },[pathname])
+
+    return (
         <Styles.NavbarWrapper>
             <Styles.Navbar>
                 <picture>
