@@ -28,7 +28,7 @@ function Home() {
             {user ? <PostForm/> : null}
 
             <Styles.PostsWrapper>
-                {posts.map((post)=> <Post key={post.id} postData={post}/>).reverse()}
+                {posts.map((post)=> <Post key={post.id} postData={post}/>)}
             </Styles.PostsWrapper>
         </main>
     );

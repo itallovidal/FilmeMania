@@ -21,6 +21,7 @@ export async function getAllPosts(): Promise<IPOST[]>{
     const {data, error} : {data: unknown, error: PostgrestError | null} =
         await supabase.from('posts')
             .select('comment, id, movie_id, rating, fk_user_id ')
+            .order('created_at', {ascending: false})
 
     if(error){
         throw new Error('Falha na requisição')
